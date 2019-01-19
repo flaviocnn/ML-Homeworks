@@ -115,18 +115,18 @@ def main():
     dataiter = iter(trainloader)
     images, labels = dataiter.next()
 
-    # print labels
+    # print 4 labels
     print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
     # show images
-    #imshow(torchvision.utils.make_grid(images))
+    imshow(torchvision.utils.make_grid(images))
 
 
     test_nets = []
-    #test_nets.append(nets.old_nn(D_in, H, D_out))
-    #test_nets.append(nets.CNN(D_out,32))
-    # test_nets.append(nets.CNN(D_out,128))
-    # test_nets.append(nets.CNN(D_out,256))
-    # test_nets.append(nets.CNN(D_out,512))
+    test_nets.append(nets.old_nn(D_in, H, D_out))
+    test_nets.append(nets.CNN(D_out,32))
+    test_nets.append(nets.CNN(D_out,128))
+    test_nets.append(nets.CNN(D_out,256))
+    test_nets.append(nets.CNN(D_out,512))
     test_nets.append(nets.CNNExtA(D_out,128))
     test_nets.append(nets.CNNExtB(D_out,128))
     test_nets.append(nets.CNNExtC(D_out,128))
@@ -145,12 +145,12 @@ def main():
 
 
     trainset = torchvision.datasets.CIFAR100(root='./data', train=True,
-                                        download=True, transform=transform)
+                                        download=False, transform=transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=N,
                                           shuffle=True, num_workers=4,drop_last=True)
 
     testset = torchvision.datasets.CIFAR100(root='./data', train=False,
-                                       download=True, transform=transform)
+                                       download=False, transform=transform)
     testloader = torch.utils.data.DataLoader(testset, batch_size=N,
                                          shuffle=False, num_workers=4,drop_last=True)
         
@@ -163,12 +163,12 @@ def main():
 
 
     trainset = torchvision.datasets.CIFAR100(root='./data', train=True,
-                                        download=True, transform=transform)
+                                        download=False, transform=transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=N,
                                           shuffle=True, num_workers=4,drop_last=True)
 
     testset = torchvision.datasets.CIFAR100(root='./data', train=False,
-                                       download=True, transform=transform)
+                                       download=False, transform=transform)
     testloader = torch.utils.data.DataLoader(testset, batch_size=N,
                                          shuffle=False, num_workers=4,drop_last=True)
         
@@ -182,15 +182,15 @@ def main():
 
     from torchvision import models
 
-    transform = t.augmentation3()
+    transform = t.augmentation3() # same as augmentation2 but different img size
 
     trainset = torchvision.datasets.CIFAR100(root='./data', train=True,
-                                        download=True, transform=transform)
+                                        download=False, transform=transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=128,
                                           shuffle=True, num_workers=4,drop_last=True)
 
     testset = torchvision.datasets.CIFAR100(root='./data', train=False,
-                                       download=True, transform=transform)
+                                       download=False, transform=transform)
     testloader = torch.utils.data.DataLoader(testset, batch_size=128,
                                          shuffle=False, num_workers=4,drop_last=True)
     
